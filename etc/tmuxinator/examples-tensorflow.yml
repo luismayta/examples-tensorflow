@@ -1,0 +1,70 @@
+# ~/.tmuxinator/examples-tensorflow.yml
+name: examples-tensorflow
+root: <%= ENV["PROJECTS"] %>/python/tensorflow/examples-tensorflow
+tmux_options: -2
+# Optional tmux socket
+# socket_name: foo
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+pre:
+  - make environment
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+# startup_window: logs
+
+# Controls whether the tmux session should be attached to automatically. Defaults to true.
+# attach: false
+
+# Runs after everything. Use it to attach to tmux with custom options etc.
+# post: tmux -CC attach -t examples-tensorflow
+
+windows:
+  - editor:
+      layout: main-vertical
+      panes:
+        - editor:
+            - pyenv activate examples-tensorflow
+            - <%= ENV["EDITOR"] %>
+        - machine:
+            - pyenv activate examples-tensorflow
+        - git:
+            - pyenv activate examples-tensorflow
+  - python:
+      layout: main-vertical
+      panes:
+        - python:
+            - pyenv activate examples-tensorflow
+            - ipython
+        - python:
+            - pyenv activate examples-tensorflow
+  - databases:
+      layout: main-vertical
+      panes:
+        - postgresql:
+            - pyenv activate examples-tensorflow
+        - mysql:
+            - pyenv activate examples-tensorflow
+  - ansible:
+      layout: main-vertical
+      panes:
+        - webserver:
+            - pyenv activate examples-tensorflow
+        - databases:
+            - pyenv activate examples-tensorflow
+  - docker:
+      layout: main-vertical
+      panes:
+        - webserver:
+            - pyenv activate examples-tensorflow
+        - databases:
+            - pyenv activate examples-tensorflow

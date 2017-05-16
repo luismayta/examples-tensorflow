@@ -1,0 +1,12 @@
+-/log
+-/tmp
+-/vendor
+-/.git
+-/auto-save-list
+-*.cache
+-*.pyc
+-.wercker/*
+-projectile-bookmarks.eld
+-GPATH
+-GRTAGS
+-GTAGS
